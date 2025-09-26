@@ -74,7 +74,12 @@ export default function PacManGame() {
   const rows = MAZE_RAW.length;
   const tileSizeRef = useRef(16);
 
-  const pacman = useRef({ pos: { x: 0, y: 0 }, dir: { x: 1, y: 0 }, pending: { x: 1, y: 0 }, speed: 6 });
+  const pacman = useRef({
+    pos: { x: 0, y: 0 },
+    dir: { x: 1, y: 0 },
+    pending: { x: 1, y: 0 },
+    speed: 6,
+  });
   const ghosts = useRef(
     [] as { id: number; pos: Vec; dir: Vec; speed: number; color: string }[],
   );
@@ -83,7 +88,13 @@ export default function PacManGame() {
 
   useEffect(() => {
     const parsed: Tile[][] = [];
-    const gs: { id: number; pos: Vec; dir: Vec; speed: number; color: string }[] = [];
+    const gs: {
+      id: number;
+      pos: Vec;
+      dir: Vec;
+      speed: number;
+      color: string;
+    }[] = [];
     let p: Vec | null = null;
     let dotCount = 0;
 
@@ -94,7 +105,14 @@ export default function PacManGame() {
         row.push(ch);
         if (ch === DOT) dotCount++;
         if (ch === PACMAN) p = { x, y };
-        if (ch === GHOST) gs.push({ id: gs.length, pos: { x, y }, dir: { x: 1, y: 0 }, speed: 5.5, color: ghostColor(gs.length) });
+        if (ch === GHOST)
+          gs.push({
+            id: gs.length,
+            pos: { x, y },
+            dir: { x: 1, y: 0 },
+            speed: 5.5,
+            color: ghostColor(gs.length),
+          });
       }
       parsed.push(row);
     }
@@ -102,7 +120,8 @@ export default function PacManGame() {
     // cleanup markers from maze for gameplay
     for (let y = 0; y < rows; y++) {
       for (let x = 0; x < cols; x++) {
-        if (parsed[y][x] === PACMAN || parsed[y][x] === GHOST) parsed[y][x] = DOT;
+        if (parsed[y][x] === PACMAN || parsed[y][x] === GHOST)
+          parsed[y][x] = DOT;
       }
     }
 
@@ -119,12 +138,16 @@ export default function PacManGame() {
   // Resize observer for responsive canvas
   useEffect(() => {
     // initial size
-    if (containerRef.current) setContainerWidth(containerRef.current.clientWidth);
-    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver((entries) => {
-      for (const e of entries) {
-        setContainerWidth(e.contentRect.width);
-      }
-    }) : null;
+    if (containerRef.current)
+      setContainerWidth(containerRef.current.clientWidth);
+    const ro =
+      typeof ResizeObserver !== "undefined"
+        ? new ResizeObserver((entries) => {
+            for (const e of entries) {
+              setContainerWidth(e.contentRect.width);
+            }
+          })
+        : null;
     if (ro && containerRef.current) ro.observe(containerRef.current);
     return () => ro?.disconnect();
   }, []);
@@ -133,10 +156,14 @@ export default function PacManGame() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const k = e.key.toLowerCase();
-      if (k === "arrowup" || k === "w") pacman.current.pending = { x: 0, y: -1 };
-      else if (k === "arrowdown" || k === "s") pacman.current.pending = { x: 0, y: 1 };
-      else if (k === "arrowleft" || k === "a") pacman.current.pending = { x: -1, y: 0 };
-      else if (k === "arrowright" || k === "d") pacman.current.pending = { x: 1, y: 0 };
+      if (k === "arrowup" || k === "w")
+        pacman.current.pending = { x: 0, y: -1 };
+      else if (k === "arrowdown" || k === "s")
+        pacman.current.pending = { x: 0, y: 1 };
+      else if (k === "arrowleft" || k === "a")
+        pacman.current.pending = { x: -1, y: 0 };
+      else if (k === "arrowright" || k === "d")
+        pacman.current.pending = { x: 1, y: 0 };
       else if (k === "r" && gameOver) restart();
     };
     window.addEventListener("keydown", onKey);
@@ -162,9 +189,14 @@ export default function PacManGame() {
 
   function tryTurn(entity: { pos: Vec; dir: Vec; pending: Vec }) {
     const center = { x: Math.round(entity.pos.x), y: Math.round(entity.pos.y) };
-    const closeEnough = Math.abs(entity.pos.x - center.x) < 0.15 && Math.abs(entity.pos.y - center.y) < 0.15;
+    const closeEnough =
+      Math.abs(entity.pos.x - center.x) < 0.15 &&
+      Math.abs(entity.pos.y - center.y) < 0.15;
     if (!closeEnough) return;
-    const ahead = { x: center.x + entity.pending.x, y: center.y + entity.pending.y };
+    const ahead = {
+      x: center.x + entity.pending.x,
+      y: center.y + entity.pending.y,
+    };
     if (passable(ahead)) {
       entity.dir = { ...entity.pending };
       entity.pos = { x: center.x, y: center.y };
@@ -172,7 +204,10 @@ export default function PacManGame() {
   }
 
   function move(entity: { pos: Vec; dir: Vec; speed: number }, dt: number) {
-    const next = { x: entity.pos.x + entity.dir.x * (dt * entity.speed), y: entity.pos.y + entity.dir.y * (dt * entity.speed) };
+    const next = {
+      x: entity.pos.x + entity.dir.x * (dt * entity.speed),
+      y: entity.pos.y + entity.dir.y * (dt * entity.speed),
+    };
     // collision with walls
     const nextTile = { x: Math.round(next.x), y: Math.round(next.y) };
     if (passable(nextTile)) {
@@ -195,14 +230,27 @@ export default function PacManGame() {
     const parsed: Tile[][] = [];
     let dotCount = 0;
     let p: Vec | null = null;
-    const gs: { id: number; pos: Vec; dir: Vec; speed: number; color: string }[] = [];
+    const gs: {
+      id: number;
+      pos: Vec;
+      dir: Vec;
+      speed: number;
+      color: string;
+    }[] = [];
 
     for (let y = 0; y < rows; y++) {
       const row: Tile[] = [];
       for (let x = 0; x < cols; x++) {
         let ch = MAZE_RAW[y][x] as Tile;
         if (ch === PACMAN) p = { x, y };
-        if (ch === GHOST) gs.push({ id: gs.length, pos: { x, y }, dir: { x: 1, y: 0 }, speed: 5.5, color: ghostColor(gs.length) });
+        if (ch === GHOST)
+          gs.push({
+            id: gs.length,
+            pos: { x, y },
+            dir: { x: 1, y: 0 },
+            speed: 5.5,
+            color: ghostColor(gs.length),
+          });
         if (ch === PACMAN || ch === GHOST) ch = DOT;
         row.push(ch);
         if (ch === DOT) dotCount++;
@@ -240,7 +288,10 @@ export default function PacManGame() {
     move(pacman.current as any, dt);
 
     // eat dots
-    const pTile = { x: Math.round(pacman.current.pos.x), y: Math.round(pacman.current.pos.y) };
+    const pTile = {
+      x: Math.round(pacman.current.pos.x),
+      y: Math.round(pacman.current.pos.y),
+    };
     if (maze.current[pTile.y]?.[pTile.x] === DOT) {
       maze.current[pTile.y][pTile.x] = EMPTY;
       dotsLeft.current = Math.max(0, dotsLeft.current - 1);
@@ -251,7 +302,9 @@ export default function PacManGame() {
     for (const g of ghosts.current) {
       // try to choose better direction at tile centers
       const center = centerOfTile(g.pos);
-      const isCenter = Math.abs(g.pos.x - center.x) < 0.1 && Math.abs(g.pos.y - center.y) < 0.1;
+      const isCenter =
+        Math.abs(g.pos.x - center.x) < 0.1 &&
+        Math.abs(g.pos.y - center.y) < 0.1;
       if (isCenter) {
         const options: Vec[] = [
           { x: 1, y: 0 },
@@ -259,11 +312,19 @@ export default function PacManGame() {
           { x: 0, y: 1 },
           { x: 0, y: -1 },
         ].filter((d) => !(d.x === -g.dir.x && d.y === -g.dir.y));
-        const possible = options.filter((d) => passable({ x: center.x + d.x, y: center.y + d.y }));
+        const possible = options.filter((d) =>
+          passable({ x: center.x + d.x, y: center.y + d.y }),
+        );
         // biased toward Pac-Man
-        possible.sort((a, b) => manhattan({ x: center.x + a.x, y: center.y + a.y }, pTile) - manhattan({ x: center.x + b.x, y: center.y + b.y }, pTile));
+        possible.sort(
+          (a, b) =>
+            manhattan({ x: center.x + a.x, y: center.y + a.y }, pTile) -
+            manhattan({ x: center.x + b.x, y: center.y + b.y }, pTile),
+        );
         const rand = Math.random();
-        const pick = possible[Math.floor(clamp(rand * 3, 0, possible.length - 1))] || g.dir;
+        const pick =
+          possible[Math.floor(clamp(rand * 3, 0, possible.length - 1))] ||
+          g.dir;
         g.dir = pick;
         g.pos = { ...center };
       }
@@ -284,7 +345,9 @@ export default function PacManGame() {
         // reset positions slightly
         pacman.current.pos = { ...pTile };
         ghosts.current.forEach((gg, i) => {
-          const home = MAZE_RAW.flatMap((r, y) => r.split("").map((c, x) => ({ c, x, y }))).find((t) => t.c === "G" && i-- === 0);
+          const home = MAZE_RAW.flatMap((r, y) =>
+            r.split("").map((c, x) => ({ c, x, y })),
+          ).find((t) => t.c === "G" && i-- === 0);
           gg.pos = home ? { x: home.x, y: home.y } : { x: 1, y: 1 };
           gg.dir = { x: 1, y: 0 };
         });
@@ -325,14 +388,26 @@ export default function PacManGame() {
     // pac-man
     const mouthPhase = (Math.sin(elapsed / 80) + 1) / 2; // 0..1
     const mouthOpen = 0.1 + mouthPhase * 0.35;
-    drawPacman(ctx, pacman.current.pos, pacman.current.dir, tileSize, mouthOpen);
+    drawPacman(
+      ctx,
+      pacman.current.pos,
+      pacman.current.dir,
+      tileSize,
+      mouthOpen,
+    );
 
     // ghosts
     ghosts.current.forEach((g, i) => drawGhost(ctx, g.pos, tileSize, g.color));
   }, !gameOver);
 
   // draw helpers
-  function drawPacman(ctx: CanvasRenderingContext2D, pos: Vec, dir: Vec, tile: number, open: number) {
+  function drawPacman(
+    ctx: CanvasRenderingContext2D,
+    pos: Vec,
+    dir: Vec,
+    tile: number,
+    open: number,
+  ) {
     const cx = pos.x * tile + tile / 2;
     const cy = pos.y * tile + tile / 2;
     const r = tile * 0.45;
@@ -354,7 +429,12 @@ export default function PacManGame() {
     ctx.fill();
   }
 
-  function drawGhost(ctx: CanvasRenderingContext2D, pos: Vec, tile: number, color: string) {
+  function drawGhost(
+    ctx: CanvasRenderingContext2D,
+    pos: Vec,
+    tile: number,
+    color: string,
+  ) {
     const x = pos.x * tile;
     const y = pos.y * tile;
     const w = tile;
@@ -393,25 +473,37 @@ export default function PacManGame() {
     <div ref={containerRef} className="relative w-full pixelated">
       <div className="absolute -inset-2 rounded-xl blur-2xl opacity-60 bg-gradient-to-br from-primary/20 via-secondary/10 to-accent/20 animate-glow" />
       <div className="relative rounded-xl overflow-hidden retro-scanlines">
-        <canvas ref={canvasRef} className="w-full h-auto block"/>
+        <canvas ref={canvasRef} className="w-full h-auto block" />
         <div className="pointer-events-none absolute left-3 top-3 flex gap-3 text-xs md:text-sm">
-          <span className="inline-flex items-center gap-2 rounded-md bg-black/40 px-3 py-1.5 text-primary font-bold neon-border" style={{ transform: `scale(${scale})` }}>
+          <span
+            className="inline-flex items-center gap-2 rounded-md bg-black/40 px-3 py-1.5 text-primary font-bold neon-border"
+            style={{ transform: `scale(${scale})` }}
+          >
             Score: {score}
           </span>
-          <span className="inline-flex items-center gap-2 rounded-md bg-black/40 px-3 py-1.5 text-accent font-bold neon-border" style={{ transform: `scale(${scale})` }}>
+          <span
+            className="inline-flex items-center gap-2 rounded-md bg-black/40 px-3 py-1.5 text-accent font-bold neon-border"
+            style={{ transform: `scale(${scale})` }}
+          >
             Lives: {lives}
           </span>
         </div>
         {gameOver && (
           <div className="absolute inset-0 grid place-items-center bg-black/70">
             <div className="text-center">
-              <div className="text-4xl md:text-6xl font-extrabold text-primary text-neon animate-flicker">Game Over</div>
-              <p className="mt-2 text-sm md:text-base text-muted-foreground">Press R to Restart</p>
+              <div className="text-4xl md:text-6xl font-extrabold text-primary text-neon animate-flicker">
+                Game Over
+              </div>
+              <p className="mt-2 text-sm md:text-base text-muted-foreground">
+                Press R to Restart
+              </p>
             </div>
           </div>
         )}
       </div>
-      <div className="mt-2 text-[10px] text-muted-foreground/80">Use WASD or Arrow Keys</div>
+      <div className="mt-2 text-[10px] text-muted-foreground/80">
+        Use WASD or Arrow Keys
+      </div>
     </div>
   );
 }

@@ -15,12 +15,26 @@ type Props = {
   className?: string;
 };
 
-export function ProjectCard({ id, title, subtitle, description, href, cta = "Open", comingSoon, children, className }: Props) {
+export function ProjectCard({
+  id,
+  title,
+  subtitle,
+  description,
+  href,
+  cta = "Open",
+  comingSoon,
+  children,
+  className,
+}: Props) {
   const isInternal = href && !/^https?:/i.test(href);
-  const Wrapper: any = href && !comingSoon ? (isInternal ? Link : "a") : ("div" as const);
-  const wrapperProps: any = href && !comingSoon
-    ? (isInternal ? { to: href } : { href, target: "_blank", rel: "noreferrer noopener" })
-    : {};
+  const Wrapper: any =
+    href && !comingSoon ? (isInternal ? Link : "a") : ("div" as const);
+  const wrapperProps: any =
+    href && !comingSoon
+      ? isInternal
+        ? { to: href }
+        : { href, target: "_blank", rel: "noreferrer noopener" }
+      : {};
 
   return (
     <Wrapper
@@ -37,8 +51,12 @@ export function ProjectCard({ id, title, subtitle, description, href, cta = "Ope
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-primary/5 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition" />
       <div className="mb-3 flex items-center justify-between">
         <div>
-          <div className="text-xs uppercase tracking-widest text-secondary/70">{subtitle}</div>
-          <h3 className="text-xl font-extrabold text-foreground drop-shadow-sm text-neon animate-glow">{title}</h3>
+          <div className="text-xs uppercase tracking-widest text-secondary/70">
+            {subtitle}
+          </div>
+          <h3 className="text-xl font-extrabold text-foreground drop-shadow-sm text-neon animate-glow">
+            {title}
+          </h3>
         </div>
         {!comingSoon && href ? (
           <span className="inline-flex items-center gap-1 text-sm text-secondary group-hover:text-primary transition">
@@ -51,7 +69,9 @@ export function ProjectCard({ id, title, subtitle, description, href, cta = "Ope
         )}
       </div>
       {description ? (
-        <p className="mb-4 text-sm text-muted-foreground leading-relaxed">{description}</p>
+        <p className="mb-4 text-sm text-muted-foreground leading-relaxed">
+          {description}
+        </p>
       ) : null}
       {children ? (
         <div className="relative rounded-lg border border-border/60 bg-background/60 p-2 md:p-3">
