@@ -118,13 +118,15 @@ export default function PacManGame() {
 
   // Resize observer for responsive canvas
   useEffect(() => {
-    const ro = new ResizeObserver((entries) => {
+    // initial size
+    if (containerRef.current) setContainerWidth(containerRef.current.clientWidth);
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver((entries) => {
       for (const e of entries) {
         setContainerWidth(e.contentRect.width);
       }
-    });
-    if (containerRef.current) ro.observe(containerRef.current);
-    return () => ro.disconnect();
+    }) : null;
+    if (ro && containerRef.current) ro.observe(containerRef.current);
+    return () => ro?.disconnect();
   }, []);
 
   // Input
