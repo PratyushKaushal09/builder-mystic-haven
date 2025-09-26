@@ -15,13 +15,16 @@ type Props = {
 };
 
 export function ProjectCard({ id, title, subtitle, description, href, cta = "Open", comingSoon, children, className }: Props) {
-  const Wrapper = href && !comingSoon ? "a" : ("div" as const);
-  const wrapperProps = href && !comingSoon ? { href, target: "_blank", rel: "noreferrer noopener" } : {};
+  const isInternal = href && !/^https?:/i.test(href);
+  const Wrapper: any = href && !comingSoon ? (isInternal ? require("react-router-dom").Link : "a") : ("div" as const);
+  const wrapperProps = href && !comingSoon
+    ? (isInternal ? { to: href } : { href, target: "_blank", rel: "noreferrer noopener" })
+    : {};
 
   return (
     <Wrapper
       id={id}
-      {...wrapperProps}
+      {...(wrapperProps as any)}
       className={cn(
         "group relative flex flex-col overflow-hidden rounded-xl border bg-card/70 p-5 backdrop-blur transition transform",
         "hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20",
