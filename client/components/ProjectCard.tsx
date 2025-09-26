@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 type Props = {
   id?: string;
@@ -16,8 +17,8 @@ type Props = {
 
 export function ProjectCard({ id, title, subtitle, description, href, cta = "Open", comingSoon, children, className }: Props) {
   const isInternal = href && !/^https?:/i.test(href);
-  const Wrapper: any = href && !comingSoon ? (isInternal ? require("react-router-dom").Link : "a") : ("div" as const);
-  const wrapperProps = href && !comingSoon
+  const Wrapper: any = href && !comingSoon ? (isInternal ? Link : "a") : ("div" as const);
+  const wrapperProps: any = href && !comingSoon
     ? (isInternal ? { to: href } : { href, target: "_blank", rel: "noreferrer noopener" })
     : {};
 
