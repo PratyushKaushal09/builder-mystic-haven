@@ -22,6 +22,9 @@ export default function Index() {
                 <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Pratyush Kaushal</div>
                 <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Shiven Mahajan</div>
               </div>
+              <div className="mt-6">
+                <a href="/game" className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-[0_0_25px_hsla(var(--primary),0.35)] hover:brightness-110 transition animate-floaty">Play Pac‑Man</a>
+              </div>
             </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 blur-2xl rounded-3xl animate-flicker" />
