@@ -1,6 +1,26 @@
 import React from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { AppLayout } from "@/components/Layout";
+import React, { useRef, useState } from "react";
+
+function AudioToggle() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const toggle = () => {
+    const a = audioRef.current;
+    if (!a) return;
+    if (playing) { a.pause(); setPlaying(false); }
+    else { a.play().then(() => setPlaying(true)).catch(() => {}); }
+  };
+  return (
+    <div className="inline-flex items-center gap-2">
+      <audio ref={audioRef} loop preload="none" src="https://cdn.pixabay.com/audio/2021/09/02/audio_36f2d2f9f0.mp3?filename=wind-ambient-6424.mp3" />
+      <button onClick={toggle} className="rounded-lg border px-4 py-2 text-sm neon-border hover:-translate-y-0.5 transition">
+        {playing ? "Pause Ambience" : "Play Ambience"}
+      </button>
+    </div>
+  );
+}
 
 export default function Index() {
   return (
