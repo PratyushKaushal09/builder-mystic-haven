@@ -19,14 +19,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <a href="/#events" className="hover:text-primary transition">
               Events
             </a>
-            <NavLink
-              to="/game"
-              className={({ isActive }) =>
-                isActive ? "text-primary" : "hover:text-primary transition"
-              }
-            >
-              Game
-            </NavLink>
           </nav>
         </div>
       </header>
