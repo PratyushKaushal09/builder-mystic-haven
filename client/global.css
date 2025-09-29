@@ -147,3 +147,6 @@
 @keyframes waveKey { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .animate-wave { animation: waveKey 14s linear infinite; }
 .animate-wave-slow { animation: waveKey 22s linear infinite; opacity: 0.8; }
+
+/* scanline for retro-scanlines utility */
+@keyframes scanline { 0% { transform: translateY(-100%);} 100% { transform: translateY(100%);} }
