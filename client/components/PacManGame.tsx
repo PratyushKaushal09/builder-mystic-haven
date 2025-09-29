@@ -467,6 +467,9 @@ export default function PacManGame() {
   }
 
   // render overlay UI
+  const nudge = (dir: Vec) => {
+    pacman.current.pending = dir;
+  };
   const scale = Math.max(0.85, Math.min(1.1, containerWidth / 600));
 
   return (
@@ -501,8 +504,16 @@ export default function PacManGame() {
           </div>
         )}
       </div>
-      <div className="mt-2 text-[10px] text-muted-foreground/80">
+      <div className="mt-2 text-[10px] text-muted-foreground/80 text-center">
         Use WASD or Arrow Keys
+      </div>
+      <div className="mt-3 md:hidden grid grid-cols-3 gap-2 w-44 mx-auto select-none">
+        <div />
+        <button aria-label="Up" onClick={() => nudge({ x: 0, y: -1 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">▲</button>
+        <div />
+        <button aria-label="Left" onClick={() => nudge({ x: -1, y: 0 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">◄</button>
+        <button aria-label="Down" onClick={() => nudge({ x: 0, y: 1 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">▼</button>
+        <button aria-label="Right" onClick={() => nudge({ x: 1, y: 0 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">►</button>
       </div>
     </div>
   );
