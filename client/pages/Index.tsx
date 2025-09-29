@@ -17,22 +17,15 @@ export default function Index() {
                 Welcome to Charminar — a modern, data-driven experience blending clean design with real-time predictions and events.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-3 max-w-sm text-xs md:text-sm">
-                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
-                  Dev Patel
-                </div>
-                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
-                  Hana parvez
-                </div>
-                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
-                  Pratyush Kaushal
-                </div>
-                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
-                  Shiven Mahajan
-                </div>
+                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Dev Patel</div>
+                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Hana Parvez</div>
+                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Pratyush Kaushal</div>
+                <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">Shiven Mahajan</div>
               </div>
-              <div className="mt-6 flex gap-3">
-                <a href="#predicts" className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-[0_0_25px_hsla(var(--primary),0.35)] hover:brightness-110 transition">Explore</a>
+              <div className="mt-6 flex flex-wrap gap-3 items-center">
+                <a href="#predicts" className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-sm hover:brightness-110 transition">Explore</a>
                 <a href="/#events" className="inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 neon-border hover:-translate-y-0.5 transition">Events</a>
+                <AudioToggle />
               </div>
             </div>
             <div className="relative">
