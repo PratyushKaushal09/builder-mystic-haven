@@ -10,12 +10,11 @@ export default function Index() {
         <div className="container py-16 md:py-24">
           <div className="grid items-center gap-10 md:grid-cols-2">
             <div>
-              <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-neon animate-glow">
-                Welcome to{" "}
-                <span className="text-primary">Charminar Family</span>
+              <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+                Welcome to <span className="text-primary">Charminar</span>
               </h1>
               <p className="mt-4 text-muted-foreground max-w-prose">
-                A polished, modern experience inspired by nvg8.io — fluid motion, soft gradients, and clean typography.
+                Welcome to Charminar — a modern, data-driven experience blending clean design with real-time predictions and events.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-3 max-w-sm text-xs md:text-sm">
                 <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
