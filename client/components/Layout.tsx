@@ -33,7 +33,12 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
 
       <main className="flex-1">{children}</main>
 
-      <Link to="/" className="fixed bottom-5 right-5 z-50 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-[0_0_35px_hsla(var(--primary),0.45)] hover:brightness-110 transition animate-floaty">Home</Link>
+      <Link
+        to="/"
+        className="fixed bottom-5 right-5 z-50 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-[0_0_35px_hsla(var(--primary),0.45)] hover:brightness-110 transition animate-floaty"
+      >
+        Home
+      </Link>
 
       <footer className="border-t">
         <div className="container py-8 text-xs text-muted-foreground flex items-center justify-between">

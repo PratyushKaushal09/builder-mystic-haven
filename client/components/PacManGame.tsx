@@ -509,11 +509,35 @@ export default function PacManGame() {
       </div>
       <div className="mt-3 md:hidden grid grid-cols-3 gap-2 w-44 mx-auto select-none">
         <div />
-        <button aria-label="Up" onClick={() => nudge({ x: 0, y: -1 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">▲</button>
+        <button
+          aria-label="Up"
+          onClick={() => nudge({ x: 0, y: -1 })}
+          className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95"
+        >
+          ▲
+        </button>
         <div />
-        <button aria-label="Left" onClick={() => nudge({ x: -1, y: 0 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">◄</button>
-        <button aria-label="Down" onClick={() => nudge({ x: 0, y: 1 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">▼</button>
-        <button aria-label="Right" onClick={() => nudge({ x: 1, y: 0 })} className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95">►</button>
+        <button
+          aria-label="Left"
+          onClick={() => nudge({ x: -1, y: 0 })}
+          className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95"
+        >
+          ◄
+        </button>
+        <button
+          aria-label="Down"
+          onClick={() => nudge({ x: 0, y: 1 })}
+          className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95"
+        >
+          ▼
+        </button>
+        <button
+          aria-label="Right"
+          onClick={() => nudge({ x: 1, y: 0 })}
+          className="rounded-md bg-black/40 text-foreground py-3 neon-border active:scale-95"
+        >
+          ►
+        </button>
       </div>
     </div>
   );
