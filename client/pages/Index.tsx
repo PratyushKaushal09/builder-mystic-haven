@@ -1,25 +1,5 @@
 import { ProjectCard } from "@/components/ProjectCard";
 import { AppLayout } from "@/components/Layout";
-import React, { useRef, useState } from "react";
-
-function AudioToggle() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [playing, setPlaying] = useState(false);
-  const toggle = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    if (playing) { a.pause(); setPlaying(false); }
-    else { a.play().then(() => setPlaying(true)).catch(() => {}); }
-  };
-  return (
-    <div className="inline-flex items-center gap-2">
-      <audio ref={audioRef} loop preload="none" src="https://cdn.pixabay.com/audio/2021/09/02/audio_36f2d2f9f0.mp3?filename=wind-ambient-6424.mp3" />
-      <button onClick={toggle} className="rounded-lg border px-4 py-2 text-sm neon-border hover:-translate-y-0.5 transition">
-        {playing ? "Pause Ambience" : "Play Ambience"}
-      </button>
-    </div>
-  );
-}
 
 export default function Index() {
   return (
@@ -44,11 +24,11 @@ export default function Index() {
               <div className="mt-6 flex flex-wrap gap-3 items-center">
                 <a href="#predicts" className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-sm hover:brightness-110 transition">Explore</a>
                 <a href="/#events" className="inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 neon-border hover:-translate-y-0.5 transition">Events</a>
-                <AudioToggle />
+                <audio loop preload="none" src="https://cdn.pixabay.com/audio/2021/09/02/audio_36f2d2f9f0.mp3?filename=wind-ambient-6424.mp3" style={{ display: "none" }} />
               </div>
             </div>
             <div className="relative">
-              <div className="absolute -inset-6 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 blur-2xl rounded-3xl animate-flicker" />
+              <div className="absolute -inset-6 blur-2xl rounded-3xl animate-flicker" style={{ backgroundImage: "linear-gradient(to right top, rgba(255, 229, 61, 0.2), rgba(0, 225, 255, 0.1), rgba(255, 77, 166, 0.2))" }} />
               <div className="relative aspect-square md:aspect-[4/3] rounded-3xl border neon-border bg-card/60 overflow-hidden grid place-items-center">
                 <img src="https://cdn.builder.io/api/v1/image/assets%2F4c67ae0c37e44840ae94a8f6987e9980%2F39f585d43bb34501811c6b832f28f516?format=webp&width=800" alt="Charminar illustration" className="w-full h-full object-contain md:object-cover" />
               </div>
