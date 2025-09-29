@@ -8,7 +8,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <div className="container flex h-16 items-center justify-between">
           <Link
             to="/"
-            className="text-2xl font-extrabold tracking-tight text-primary text-neon animate-glow"
+            className="text-2xl md:text-3xl font-extrabold tracking-tight text-primary"
           >
             Charminar Family
           </Link>
