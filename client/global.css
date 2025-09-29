@@ -112,17 +112,17 @@
 
 @layer utilities {
   .text-neon {
-    text-shadow: 0 0 4px hsl(var(--primary)), 0 0 10px hsl(var(--primary));
+    text-shadow: 0 0 2px hsl(var(--primary)), 0 0 6px hsl(var(--primary));
   }
   .text-neon-accent {
-    text-shadow: 0 0 4px hsl(var(--accent)), 0 0 10px hsl(var(--accent));
+    text-shadow: 0 0 2px hsl(var(--accent)), 0 0 6px hsl(var(--accent));
   }
   .pixelated {
     image-rendering: pixelated;
     image-rendering: crisp-edges;
   }
   .neon-border {
-    box-shadow: 0 0 0 2px hsl(var(--border)), 0 0 14px hsla(var(--primary),0.35) inset, 0 0 32px hsla(var(--secondary),0.25) inset;
+    box-shadow: 0 0 0 1px hsl(var(--border)), 0 0 8px hsla(var(--primary),0.25) inset, 0 0 18px hsla(var(--secondary),0.18) inset;
   }
   .retro-scanlines {
     position: relative;
@@ -145,8 +145,16 @@
 
 /* wave animations */
 @keyframes waveKey { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes waveKeyRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .animate-wave { animation: waveKey 14s linear infinite; }
 .animate-wave-slow { animation: waveKey 22s linear infinite; opacity: 0.8; }
+.animate-wave-right { animation: waveKeyRight 18s linear infinite; }
+.animate-wave-right-slow { animation: waveKeyRight 28s linear infinite; opacity: .85; }
+
+/* wind flow */
+@keyframes wind { from { background-position: 0 0; } to { background-position: 200% 0; } }
+.wind-flow { position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 8px); opacity: .22; mix-blend-mode: soft-light; }
+.animate-wind { animation: wind 12s linear infinite; }
 
 /* scanline for retro-scanlines utility */
 @keyframes scanline { 0% { transform: translateY(-100%);} 100% { transform: translateY(100%);} }
