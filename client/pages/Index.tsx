@@ -5,7 +5,7 @@ import { AppLayout } from "@/components/Layout";
 export default function Index() {
   return (
     <AppLayout>
-      <section className="relative">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_20%_20%,hsla(var(--primary),0.15),transparent),radial-gradient(40%_40%_at_80%_0%,hsla(var(--accent),0.15),transparent)]" />
         <div className="container py-16 md:py-24">
           <div className="grid items-center gap-10 md:grid-cols-2">
@@ -15,10 +15,7 @@ export default function Index() {
                 <span className="text-primary">Charminar Family</span>
               </h1>
               <p className="mt-4 text-muted-foreground max-w-prose">
-                Three interactive blocks — a live project, a coming-soon
-                experience, and a fully playable retro Pac-Man inspired game.
-                Designed to be responsive, fast, and professional with bold,
-                arcade-style energy.
+                A polished, modern experience inspired by nvg8.io — fluid motion, soft gradients, and clean typography.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-3 max-w-sm text-xs md:text-sm">
                 <div className="rounded-lg border px-3 py-2 neon-border bg-background/70">
@@ -34,28 +31,30 @@ export default function Index() {
                   Shiven Mahajan
                 </div>
               </div>
-              <div className="mt-6">
-                <a
-                  href="/game"
-                  className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-[0_0_25px_hsla(var(--primary),0.35)] hover:brightness-110 transition animate-floaty"
-                >
-                  Play Pac‑Man
-                </a>
+              <div className="mt-6 flex gap-3">
+                <a href="#predicts" className="inline-flex items-center gap-2 rounded-lg bg-primary text-primary-foreground px-5 py-2.5 font-semibold shadow-[0_0_25px_hsla(var(--primary),0.35)] hover:brightness-110 transition">Explore</a>
+                <a href="/#events" className="inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 neon-border hover:-translate-y-0.5 transition">Events</a>
               </div>
             </div>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 blur-2xl rounded-3xl animate-flicker" />
-              <div className="relative aspect-[4/3] rounded-3xl border neon-border bg-card/60 grid place-items-center">
-                <div className="text-center p-6">
-                  <div className="text-7xl md:text-8xl animate-bounce select-none">
-                    🕹️
-                  </div>
-                  <div className="mt-3 text-sm text-muted-foreground">
-                    Arcade vibes, modern build
-                  </div>
-                </div>
+              <div className="absolute -inset-6 bg-gradient-to-tr from-primary/20 via-secondary/10 to-accent/20 blur-2xl rounded-3xl animate-flicker" />
+              <div className="relative aspect-square md:aspect-[4/3] rounded-3xl border neon-border bg-card/60 overflow-hidden grid place-items-center">
+                <img src="https://cdn.builder.io/api/v1/image/assets%2F4c67ae0c37e44840ae94a8f6987e9980%2F39f585d43bb34501811c6b832f28f516?format=webp&width=800" alt="Charminar illustration" className="w-full h-full object-contain md:object-cover" />
               </div>
             </div>
+          </div>
+        </div>
+        {/* moving waves */}
+        <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-24 opacity-60">
+          <div className="absolute inset-x-0 bottom-6 h-10 animate-wave" aria-hidden>
+            <svg className="w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--secondary) / 0.25)" />
+            </svg>
+          </div>
+          <div className="absolute inset-x-0 bottom-0 h-10 animate-wave-slow" aria-hidden>
+            <svg className="w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--accent) / 0.2)" />
+            </svg>
           </div>
         </div>
       </section>
@@ -79,14 +78,6 @@ export default function Index() {
             cta="Open"
           />
 
-          <ProjectCard
-            id="game"
-            title="Charminar Game"
-            subtitle="Pac-Man (Retro)"
-            description="Classic Pac-Man style maze with dots, 4 ghosts, score, and lives."
-            href="/game"
-            cta="Play"
-          />
         </div>
       </section>
     </AppLayout>
