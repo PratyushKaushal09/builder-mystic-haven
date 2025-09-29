@@ -73,10 +73,10 @@ export default function Index() {
           <ProjectCard
             id="events"
             title="Charminar Events"
-            subtitle="Coming Soon"
-            description="Stay tuned for upcoming events and experiences."
-            href={null}
-            comingSoon
+            subtitle="Live Project"
+            description="Discover upcoming events and experiences."
+            href="https://zenith-space-charminar-events.netlify.app/"
+            cta="Open"
           />
 
           <ProjectCard
