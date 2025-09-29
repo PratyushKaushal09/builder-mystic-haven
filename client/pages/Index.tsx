@@ -36,16 +36,18 @@ export default function Index() {
             </div>
           </div>
         </div>
+        {/* wind overlay */}
+        <div className="wind-flow animate-wind" />
         {/* moving waves */}
         <div className="pointer-events-none absolute -bottom-1 left-0 right-0 h-24 opacity-60">
-          <div className="absolute inset-x-0 bottom-6 h-10 animate-wave" aria-hidden>
+          <div className="absolute inset-x-0 bottom-6 h-10 animate-wave-right" aria-hidden>
             <svg className="w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--secondary) / 0.25)" />
+              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--secondary) / 0.22)" />
             </svg>
           </div>
-          <div className="absolute inset-x-0 bottom-0 h-10 animate-wave-slow" aria-hidden>
+          <div className="absolute inset-x-0 bottom-0 h-10 animate-wave-right-slow" aria-hidden>
             <svg className="w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
-              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--accent) / 0.2)" />
+              <path d="M0,0 C150,60 350,60 600,0 C850,-60 1050,-60 1200,0 L1200,120 L0,120 Z" fill="hsl(var(--accent) / 0.16)" />
             </svg>
           </div>
         </div>
