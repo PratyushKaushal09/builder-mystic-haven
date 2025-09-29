@@ -1,4 +1,3 @@
-import React from "react";
 import { ProjectCard } from "@/components/ProjectCard";
 import { AppLayout } from "@/components/Layout";
 import React, { useRef, useState } from "react";
